@@ -1,4 +1,4 @@
-# SGEMM GP Surrogate: GPU Kernel Performance Prediction
+# SGEMM Gaussian Process Surrogate: GPU Kernel Performance Prediction
 
 ## Problem Statement
 
