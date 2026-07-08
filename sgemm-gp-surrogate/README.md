@@ -40,7 +40,7 @@ Model performance on held out test configurations:
 | R squared | 0.730 |
 | RMSE | approximately 197 ms |
 
-![GP Posterior: Actual vs Predicted Runtime](./parity_plot.png)
+![GP Posterior: Actual vs Predicted Runtime](./image.png)
 
 The plot above shows predicted execution time against actual execution
 time on a log log scale, with the red dashed line marking perfect
