@@ -65,4 +65,8 @@ memory and thread tiling bottlenecks.
 * Training used a random subsample of 5,000 points rather than the full
   dataset. A true sparse Gaussian Process method (such as SVGP, available
   through GPyTorch or GPflow) would scale to the full 240,000 point
-  dataset and
+  dataset and likely improve accuracy.
+* No simpler baseline model, such as Random Forest, has been compared yet.
+  Adding one would help contextualize how strong an R squared of 0.730
+  actually is for this problem.
+  
