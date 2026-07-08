@@ -1,9 +1,5 @@
 # Progress Log
 
-Short, running notes on weekly progress across all projects.
-Keep entries brief — 2-4 bullet points per week is enough.
-
----
 
 ## Week 1
 - 
