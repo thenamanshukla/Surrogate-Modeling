@@ -1,0 +1,23 @@
+# Data & large files
+data/*
+!data/.gitkeep
+*.csv
+*.zip
+*.h5
+*.pt
+*.pth
+*.pkl
+*.ckpt
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS/editor junk
+.DS_Store
+.vscode/
