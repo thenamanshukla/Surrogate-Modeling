@@ -1,4 +1,4 @@
-# SVGP Transcoding Time Surrogate
+# Sparse Variational Gaussian Process Transcoding Time Surrogate
 
 ## Problem Statement
 
