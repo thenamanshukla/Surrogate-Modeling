@@ -46,26 +46,6 @@ dataset while still preserving calibrated uncertainty estimates.
 
 ## Results
 
-![Target distribution comparison](./target_distribution_comparison.png)
-
-This plot compares the raw CPU execution time distribution against the
-standardized log scaled target. The raw distribution is severely right
-skewed, with the vast majority of transcoding jobs finishing in under
-ten seconds and a long thin tail extending past two hundred seconds.
-The log transform pulls this into a roughly symmetric, near normal
-shape, confirming that the transform successfully stabilizes the target
-before it is passed into the Gaussian Process likelihood.
-
-![Feature correlation heatmap](./feature_correlation_heatmap.png)
-
-This heatmap shows pairwise correlations across all standardized
-features and the log scaled target. Several structural features such
-as frame counts, I frame size, and P frame size are strongly correlated
-with each other, as expected given they all scale with video duration
-and resolution, but no pair reaches the near perfect collinearity that
-would risk a singular covariance matrix and break the Cholesky
-decomposition inside the Gaussian Process kernel.
-
 ![PCA training manifold](./pca_training_manifold.png)
 
 This three dimensional PCA projection visualizes the twenty five
@@ -76,11 +56,18 @@ banding and clustering illustrate the non linear structure in hardware
 execution time that the RBF kernel and its Automatic Relevance
 Determination lengthscales need to capture.
 
-Note: this Results section currently covers data validation and
-exploratory diagnostics. The Exact GP and SVGP predictive posterior
-plots, which show each model's actual performance on the held out test
-set, will be added once those cells are re run following the notebook
-fixes described in Limitations and Next Steps.
+![SVGP predictive posterior](./svgp_posterior.png)
+
+This plot shows the Sparse Variational GP predictive mean and ninety
+five percent confidence interval against the true log scaled execution
+time for the held out test configurations, sorted from fastest to
+slowest. The SVGP is trained on the entire dataset of roughly sixty
+seven and a half thousand points using one thousand and twenty four
+learned inducing points, so its confidence band stays tight and
+consistent across the full range of test configurations rather than
+degrading in sparsely sampled regions, which is the main practical
+advantage this project set out to demonstrate over the memory
+constrained Exact GP baseline.
 
 ## Notebooks
 
