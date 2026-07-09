@@ -56,7 +56,8 @@ banding and clustering illustrate the non linear structure in hardware
 execution time that the RBF kernel and its Automatic Relevance
 Determination lengthscales need to capture.
 
-![SVGP predictive posterior](./svgp_posterior.png)
+![SVGP predictive posterior](./SVGP.ipynb 2- Colab.png)
+
 
 This plot shows the Sparse Variational GP predictive mean and ninety
 five percent confidence interval against the true log scaled execution
