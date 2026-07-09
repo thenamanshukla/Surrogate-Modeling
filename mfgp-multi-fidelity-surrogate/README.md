@@ -39,6 +39,16 @@ increasingly capable multi fidelity architectures.
 
 ## Results
 
+### Comparing predictions across the full input space
+
+![Ground Truth vs Standard GP vs KOH MFGP](./heatmap_comparison.png)
+
+Visualizing predictions across the full two dimensional input space confirms
+the same pattern seen in the 1D slice: the Standard GP (high fidelity only)
+captures almost none of the true function's structure, while the KOH
+Multi-Fidelity GP recovers substantially more of the underlying pattern
+visible in the Ground Truth.
+
 ### Why the linear model breaks down
 
 ![Nonlinear AR-GP Captures Spatially Varying Correlation](./nargp_vs_koh.png)
