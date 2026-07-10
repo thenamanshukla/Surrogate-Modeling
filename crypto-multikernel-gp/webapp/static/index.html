@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Signal &amp; Noise — Crypto Uncertainty Decomposition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wordmark">
+    <span class="wordmark-main">SIGNAL</span><span class="wordmark-sub">&amp;NOISE</span>
+  </div>
+  <p class="tagline">a multi-kernel Gaussian process that shows its work — where each prediction's uncertainty actually comes from</p>
+</header>
+
+<main>
+
+  <section class="control-strip">
+    <div class="asset-picker" id="assetPicker">
+      <button class="asset-btn" data-asset="BTC">BTC</button>
+      <button class="asset-btn" data-asset="ETH">ETH</button>
+      <button class="asset-btn" data-asset="SOL">SOL</button>
+      <button class="asset-btn" data-asset="XRP">XRP</button>
+      <button class="asset-btn" data-asset="DOGE">DOGE</button>
+    </div>
+    <button id="runButton" class="run-button" disabled>select an asset to fit</button>
+  </section>
+
+  <section id="statusPanel" class="status-panel hidden">
+    <div class="status-dot"></div>
+    <span id="statusText">—</span>
+  </section>
+
+  <section id="errorPanel" class="error-panel hidden">
+    <strong>the fit didn't complete</strong>
+    <p id="errorText"></p>
+  </section>
+
+  <section id="resultsPanel" class="results hidden">
+
+    <div class="metrics-strip">
+      <div class="metric-card">
+        <span class="metric-label">RMSE</span>
+        <span class="metric-value" id="metricRmse">—</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">MAE</span>
+        <span class="metric-value" id="metricMae">—</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">directional accuracy</span>
+        <span class="metric-value" id="metricDir">—</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">student-t dof</span>
+        <span class="metric-value" id="metricDof">—</span>
+      </div>
+      <div class="metric-card">
+        <span class="metric-label">train / test window</span>
+        <span class="metric-value" id="metricWindow">—</span>
+      </div>
+    </div>
+
+    <div class="panel core-sample-panel">
+      <div class="panel-header">
+        <h2>uncertainty core sample</h2>
+        <p>predictive variance decomposed by data source, one layer per modality, for each held-out day</p>
+      </div>
+      <div class="legend" id="chartLegend">
+        <span class="legend-item"><i class="swatch swatch-fundamental"></i>fundamental</span>
+        <span class="legend-item"><i class="swatch swatch-technical"></i>technical</span>
+        <span class="legend-item"><i class="swatch swatch-sentiment"></i>sentiment</span>
+        <span class="legend-item"><i class="swatch swatch-interaction"></i>interaction (dashed)</span>
+      </div>
+      <canvas id="decompChart" height="130"></canvas>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>predictions vs. outcomes</h2>
+        <p>95% predictive interval, and which modality drove uncertainty that day</p>
+      </div>
+      <div class="table-scroll">
+        <table id="predictionsTable">
+          <thead>
+            <tr>
+              <th>date</th>
+              <th>actual</th>
+              <th>predicted</th>
+              <th>95% interval</th>
+              <th>dominant source</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>calibration</h2>
+        <p>does the stated confidence match the observed hit rate?</p>
+      </div>
+      <table id="calibrationTable">
+        <thead>
+          <tr><th>nominal level</th><th>empirical coverage</th><th></th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <p class="caveat" id="caveatText"></p>
+
+  </section>
+
+</main>
+
+<footer>
+  <p>Live fit on real market, developer-activity, and Fear &amp; Greed data. Not financial advice — a research instrument, not a signal generator.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
